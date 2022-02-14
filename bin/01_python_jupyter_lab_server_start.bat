@@ -2,11 +2,11 @@ REM chcp 65001 UTF-8
 chcp 65001
 
 ::cd C:\home\workspace\python\python_jupyter_lab_server\bin
-cd C:\home\workspace\python\python_jupyter_lab_server
+::cd C:\home\workspace\python\python_jupyter_lab_server
 
 ::  --notebook-dir=../ -p 8888
 ::jupyter lab --config=config/jupyter_lab_config.py
-jupyter lab
+jupyter lab --notebook-dir=../ -p 8999
 
 REM password 0000
 

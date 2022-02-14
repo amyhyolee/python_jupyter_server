@@ -1,0 +1,12 @@
+컬럼_ID,컬럼_명
+SIGUN_CD,시군코드
+SIGUN_NM,시군명
+STD_YM,기준년월
+CARD_PUBLCT_CNT,월별카드발행수량(건)
+CARD_CHRGNG_AMT,월별카드충전액(천원)
+CARD_USE_AMT,월별카드사용액(천원)
+MOBILE_GIFTCERTF_USER_CNT,월별모바일상품권이용등록자수(명)
+MOBILE_CHRGNG_AMT,월별모바일충전액(천원)
+MOBILE_USE_AMT,월별모바일사용액(천원)
+BRNHSTRM_GIFTCERTF_SALE_AMT,월별지류상품권판매액(천원)
+BRNHSTRM_GIFTCERTF_RETRVL_AMT,월별지류상품권회수액(천원)

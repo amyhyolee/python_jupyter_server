@@ -3,7 +3,7 @@
 - URL: https://www.data.go.kr/data/15056921/openapi.do
 - 인증키: 8efbd2b4faaa41d48b9c8328bb455ead
 
-2.졸업생의 취업현황'
+2.졸업생의 취업현황
 - URL: https://www.data.go.kr/data/15058233/openapi.do
 - 인증키: d1e335be21894375b7b0a15146dcf761
 

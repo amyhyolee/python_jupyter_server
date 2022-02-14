@@ -1,0 +1,6 @@
+컬럼_ID,컬럼_명
+SUM_YY,집계년도
+SUM_MT,집계월
+SIDO_NM,시도명
+SCALE_DIV_NM,규모구분명
+LOTOUT_PC,분양가격(천원/㎡)

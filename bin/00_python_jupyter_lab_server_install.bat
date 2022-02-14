@@ -1,18 +1,18 @@
 REM chcp 65001 UTF-8
 chcp 65001
 
+REM pip update
+python -m pip install --upgrade pip
+
 REM 01.01. jupyter 설치
-pip3 install jupyterlab
+pip install jupyterlab
 
 REM 01.02. jupyter 환경 설정 파일 생성
-jupyter lab --generate-config
+::jupyter lab --generate-config
 
-REM 02. pandas 설치(numpy 도 같이 설치된다.)
-::pip3 install pandas
-
-REM 03. tensorflow 설치
-::pip3 install tensorflow
-
-::pip3 install sqlite3
-
-::pip3 install requests
+pip install pandas
+pip install tensorflow
+pip install requests
+pip install matplotlib
+pip install pymysql
+pip install sqlite3

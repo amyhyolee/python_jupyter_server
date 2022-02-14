@@ -6,6 +6,8 @@
 # since: 2022.01.24
 #################################################
 
+from re import A
+import pandas as pd
 import requests, json, sqlite3, sys, time
 
 #################################################
@@ -84,7 +86,7 @@ class Api:
 
         url = "https://openapi.gg.go.kr/Hfwydrotmasterdr?KEY=8efbd2b4faaa41d48b9c8328bb455ead&type=json&pIndex="
         pIndex = 1 # 페이지 번호
-        pSize = 500  # 페이지 블럭, 한 번에 500개 가져오기
+        pSize = 500  # 페이지 블럭
         targetCnt = 0 # 대상건수
         recvCnt = 0 # 수신건수
 
@@ -98,23 +100,45 @@ class Api:
         while targetCnt >= recvCnt:
             try:
                 sql = """
-                    INSERT INTO api_student_out
-(STD_YY, SCHOOL_KIND_NM, FOUND_DIV_NM, SCHOOL_NM, MJR_NM, DIV_NM, MJR_CHARTR_NM, MJR_STATE_NM, ERSTD_CNT, MASTER_SUM, MASTER_NON_REGIST_CNT, MASTER_NON_GBSCHL_CNT, MASTER_LVSCHL_CNT, MASTER_CLGRD_WARN_CNT, MASTER_STDNT_ACT_CNT, MASTER_FLK_EXPL_CNT, MASTER_CLAS_TERM_EXCESS_CNT, MASTER_ETC_CNT, DR_SUM, DR_NON_REGIST_CNT, DR_NON_GBSCHL_CNT, DR_LVSCHL_CNT, DR_CLGRD_WARN_CNT, DR_STDNT_ACT_CNT, DR_FLK_EXPL_CNT, DR_CLAS_TERM_EXCESS_CNT, DR_ETC_CNT, MDR_UNITY_SUM, MDR_UNITY_NON_REGIST_CNT, MDR_UNITY_NON_GBSCHL_CNT, MDR_UNITY_LVSCHL_CNT, MDR_UNITY_CLGRD_WARN_CNT, MDR_UNITY_STDNT_ACT_CNT, MDR_UNITY_FLK_EXPL_CNT, MDR_UNITY_CLAS_TERM_EXCESS_CNT, MDR_UNITY_ETC_CNT, TOTSUM, HFWY_DROT_STDNT_RT)
-VALUES(:STD_YY,:SCHOOL_KIND_NM,:FOUND_DIV_NM,:SCHOOL_NM,:MJR_NM,:DIV_NM,:MJR_CHARTR_NM,:MJR_STATE_NM,:ERSTD_CNT,:MASTER_SUM,:MASTER_NON_REGIST_CNT,:MASTER_NON_GBSCHL_CNT,:MASTER_LVSCHL_CNT,:MASTER_CLGRD_WARN_CNT,:MASTER_STDNT_ACT_CNT,:MASTER_FLK_EXPL_CNT,:MASTER_CLAS_TERM_EXCESS_CNT,:MASTER_ETC_CNT,:DR_SUM,:DR_NON_REGIST_CNT,:DR_NON_GBSCHL_CNT,:DR_LVSCHL_CNT,:DR_CLGRD_WARN_CNT,:DR_STDNT_ACT_CNT,:DR_FLK_EXPL_CNT,:DR_CLAS_TERM_EXCESS_CNT,:DR_ETC_CNT,:MDR_UNITY_SUM,:MDR_UNITY_NON_REGIST_CNT,:MDR_UNITY_NON_GBSCHL_CNT,:MDR_UNITY_LVSCHL_CNT,:MDR_UNITY_CLGRD_WARN_CNT,:MDR_UNITY_STDNT_ACT_CNT,:MDR_UNITY_FLK_EXPL_CNT,:MDR_UNITY_CLAS_TERM_EXCESS_CNT,:MDR_UNITY_ETC_CNT,:TOTSUM,:HFWY_DROT_STDNT_RT)
+                        INSERT INTO api_student_out
+                        (STD_YY, SCHOOL_KIND_NM, FOUND_DIV_NM, SCHOOL_NM, MJR_NM, DIV_NM, MJR_CHARTR_NM, MJR_STATE_NM, ERSTD_CNT, MASTER_SUM, MASTER_NON_REGIST_CNT, MASTER_NON_GBSCHL_CNT, MASTER_LVSCHL_CNT, MASTER_CLGRD_WARN_CNT, MASTER_STDNT_ACT_CNT, MASTER_FLK_EXPL_CNT, MASTER_CLAS_TERM_EXCESS_CNT, MASTER_ETC_CNT, DR_SUM, DR_NON_REGIST_CNT, DR_NON_GBSCHL_CNT, DR_LVSCHL_CNT, DR_CLGRD_WARN_CNT, DR_STDNT_ACT_CNT, DR_FLK_EXPL_CNT, DR_CLAS_TERM_EXCESS_CNT, DR_ETC_CNT, MDR_UNITY_SUM, MDR_UNITY_NON_REGIST_CNT, MDR_UNITY_NON_GBSCHL_CNT, MDR_UNITY_LVSCHL_CNT, MDR_UNITY_CLGRD_WARN_CNT, MDR_UNITY_STDNT_ACT_CNT, MDR_UNITY_FLK_EXPL_CNT, MDR_UNITY_CLAS_TERM_EXCESS_CNT, MDR_UNITY_ETC_CNT, TOTSUM, HFWY_DROT_STDNT_RT)
+                        VALUES(:STD_YY,:SCHOOL_KIND_NM,:FOUND_DIV_NM,:SCHOOL_NM,:MJR_NM,:DIV_NM,:MJR_CHARTR_NM,:MJR_STATE_NM,:ERSTD_CNT,:MASTER_SUM,:MASTER_NON_REGIST_CNT,:MASTER_NON_GBSCHL_CNT,:MASTER_LVSCHL_CNT,:MASTER_CLGRD_WARN_CNT,:MASTER_STDNT_ACT_CNT,:MASTER_FLK_EXPL_CNT,:MASTER_CLAS_TERM_EXCESS_CNT,:MASTER_ETC_CNT,:DR_SUM,:DR_NON_REGIST_CNT,:DR_NON_GBSCHL_CNT,:DR_LVSCHL_CNT,:DR_CLGRD_WARN_CNT,:DR_STDNT_ACT_CNT,:DR_FLK_EXPL_CNT,:DR_CLAS_TERM_EXCESS_CNT,:DR_ETC_CNT,:MDR_UNITY_SUM,:MDR_UNITY_NON_REGIST_CNT,:MDR_UNITY_NON_GBSCHL_CNT,:MDR_UNITY_LVSCHL_CNT,:MDR_UNITY_CLGRD_WARN_CNT,:MDR_UNITY_STDNT_ACT_CNT,:MDR_UNITY_FLK_EXPL_CNT,:MDR_UNITY_CLAS_TERM_EXCESS_CNT,:MDR_UNITY_ETC_CNT,:TOTSUM,:HFWY_DROT_STDNT_RT)
                 """
 
                 for row in result['data']:
                     affected += dao.insert(sql, row)
-                print(pIndex,") ",affected, "건 등록 ==> ", round(time.time() - start, 2), "sec")
+                print(pIndex,") ",affected, "건 등록 ==>", round(time.time() - start, 2), "sec")
                 pIndex += 1
                 result = Api.get(url, pIndex, pSize)
                 recvCnt += len(result['data'])
             except:
                 print("완료")
                 break
-                
+
         print( "총 처리시간 = ", round(time.time() - start, 2), "sec") 
 
+    @staticmethod
+    def get_dataframe(url, pSize=1000):
+        start = time.time()
+        pIndex = 1 # 페이지 번호
+        pSize = 1000  # 페이지 블럭
+        targetCnt = 0 # 대상건수
+        recvCnt = 0 # 수신건수
+
+        result = Api.get(url, pIndex, pSize)
+        targetCnt = result['total_cnt']
+        recvCnt += len(result['data'])
+        items = []
+        items += result['data']
+        while targetCnt > recvCnt:
+            pIndex += 1
+            result = Api.get(url, pIndex, pSize)
+            recvCnt += len(result['data'])
+            items += result['data']
+
+        print("[처리시간:", round(time.time() - start, 2), "sec] 대상건수: %d, 처리건수: %d" % (targetCnt, recvCnt))
+        return pd.DataFrame(items)
+        
 #################################################
 # SQLite 클래스
 #################################################
@@ -211,6 +235,5 @@ if __name__ == '__main__':
     # Api.Grduemplymtgenrlgdhl(1) # 졸업생의 취업현황(일반대학원)
 
     Api.Hfwydrotmasterdr(1) # 중도탈락 학생 현황
-
 
 
