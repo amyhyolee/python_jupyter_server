@@ -1,5 +1,6 @@
 # python_jupyter_server
 파이썬 주피터 노트북
+https://github.com/shinilkim/python_jupyter_lab_server.git
 
 # Zoom
 https://pusan.zoom.us/j/85758451040?pwd=SThpREI4MXRraU5XSmhXbDBiTWFEUT09
@@ -26,6 +27,12 @@ https://www.python.org/downloads/release/python-3910/
 04.01) 개발도구 > Visual Studio code
 https://code.visualstudio.com/
 
+05.01) PMS(프로젝트 관리)
+https://www.projectlibre.com/product/1-alternative-microsoft-project-open-source
+
+05.02) PDF 문서 번역
+https://www.onlinedoctranslator.com/ko/translationform
+
 # Python libaray
 jupyter
 pandas
@@ -47,10 +54,8 @@ https://js.tensorflow.org/api/latest/?hl=ko
 2) 문제풀기
 - 프로그래머
 https://programmers.co.kr/learn/challenges?tab=all_challenges
-https://www.acmicpc.net/workbook/top
-https://codingdojang.com/list/1?sort=level&sort_order=fw
-https://wikidocs.net/7014
 
-3) phthon 무료 호스팅
-https://www.pythonanywhere.com/
-
+3) 개론
+- 인공지능 개론
+https://www.youtube.com/watch?v=J6hiz5zfDC0&list=PL1xKqHsVFgvk8nB5kJ3N0fFt3etudUBWt&ab_channel=%EC%84%B8%EC%A2%85%EB%8C%80.%EC%B5%9C%EC%9C%A0%EA%B2%BD%EA%B5%90%EC%88%98
+https://www.youtube.com/watch?v=RtOnB8WrHKw&list=PLqpIWUSJxdDn9X17lI-WO56i6WAwx0VzS&ab_channel=%EC%84%B1%EA%B7%A0%EA%B4%80%EB%8C%80%ED%95%99%EA%B5%90%EC%98%A4%ED%95%98%EC%98%81%EA%B5%90%EC%88%98
